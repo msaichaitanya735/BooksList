@@ -1,11 +1,17 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const routes = require("./router")
+const cors = require('cors')
+
 
 const app=express()
-const port = 3000;
+app.use(express.json()) 
 
-mongoose.connect("mongodb://localhost:27017/books",{
+app.use(cors())
+
+const port = 5000;
+
+mongoose.connect("mongodb://chaitanya:Asdf1234@cluster0-shard-00-00.k9vqf.mongodb.net:27017,cluster0-shard-00-01.k9vqf.mongodb.net:27017,cluster0-shard-00-02.k9vqf.mongodb.net:27017/books?ssl=true&replicaSet=atlas-s1nffy-shard-0&authSource=admin&retryWrites=true&w=majority",{
     useNewUrlParser:"true"
 })
 
