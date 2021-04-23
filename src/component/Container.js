@@ -2,6 +2,7 @@ import React, { useEffect, useState ,Component} from 'react'
 import axios from 'axios'
 import Table from './table'
 import Pagination from './pagination'
+import Nav from './Nav'
 import '../App.css'
 
 const  Container = () => {
@@ -9,12 +10,10 @@ const  Container = () => {
     const [org,setOrg]=useState([])
     const [currentPage,setCurrentPage]=useState(1);
     const [perPage,setPerPage]=useState(10);
-    const [selected,setSelected]=useState('title')
     const [sortType, setSortType] = useState('title');
     const [sortVar, setSortVar] = useState('asc');
     const [sortopen,setSortopen]=useState(true)
     const [searchWord,setSeachWord]=useState(true)
-    const [filterbooks,setFilterbooks]=useState([])
 
 
     useEffect(()=>{
@@ -73,7 +72,10 @@ const  Container = () => {
           setSeachWord(e.target.value)
           const searchText= e.target.value.toLowerCase().trim()
           console.log(searchText)
-          if(searchText){
+          if(!searchText){
+            setBooks(org)
+          }
+          else{
             const filterData= org.filter(item=>{
               return Object.keys(item).some(key=>{
                 return item[key].toString().toLowerCase().includes(searchText)
@@ -83,13 +85,17 @@ const  Container = () => {
           }
           
         }
-    return (
+
+        return (
+          <div>
+            <Nav/>
+
         <div className="container">
           <div className="sidenav">
         <div className="fo">
         <h5>
           <label>No of rows:</label>
-          <select class="form-control box" placeholder="Select the order" aria-label=".form-select-lg example" onChange={(e) => setPerPage(e.target.value)} >
+          <select className="form-control box" placeholder="Select the order" aria-label=".form-select-lg example" onChange={(e) => setPerPage(e.target.value)} >
             <option value="10">10</option>
             <option value="20">20</option>
             </select>
@@ -99,7 +105,7 @@ const  Container = () => {
         <h5>       
             <label for="">Order:</label>
         </h5>
-        <select class="form-control box" placeholder="Select the order" aria-label=".form-select-lg example" onChange={(e) => setSortVar(e.target.value)} >
+        <select className="form-control box" placeholder="Select the order" aria-label=".form-select-lg example" onChange={(e) => setSortVar(e.target.value)} >
             <option value="asc">Asc</option>
             <option value="dsc">Dsc</option>
             </select>
@@ -108,7 +114,7 @@ const  Container = () => {
         <br/>
         <br/>
             <h5> <label for="">Sort By</label></h5>
-        <select class="form-control box" onChange={(e) => setSortType(e.target.value)}>
+        <select className="form-control box" onChange={(e) => setSortType(e.target.value)}>
             <option value="title">Title</option>
             <option value="price">Price</option>
             <option value="categories">Categories</option>
@@ -117,8 +123,11 @@ const  Container = () => {
             
         </div>
         <input type="text" name="search" placeholder="Search.. &#128270; " onChange={search}></input>
+
+        
       <Table books={currentBook }  sortopen={sortopen}/>
       <Pagination perPage={perPage} totalBooks={books.length} paginate={paginate} currentPage={currentPage} className="pagination"/>
+        </div>
         </div>
     )
 }

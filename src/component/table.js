@@ -89,12 +89,14 @@ const Table=({books,sortopen})=>{
                 <th>Status</th>
             </tr>
             </thead>
+            <tbody>
     { 
         books.map((book,i)=>{
                 return(
         <Row key={i} book={book}/>
     )
     })}
+    </tbody>
         </table>
         </div>
     )
