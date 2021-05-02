@@ -77,28 +77,27 @@ const Table=({books,sortopen})=>{
    }
     return(
         <div>
-        <table class="table ">
-        <thead class="thead-dark">
-            <tr>
+          <table class="table ">
+            <thead class="thead-dark">
+              <tr>
                 <th>Details</th>
-                <th >Title 
-          </th>
+                <th >Title</th>
                 <th>Price</th>
                 <th>Categories</th>
                 <th>Authors</th>
                 <th>Status</th>
-            </tr>
+              </tr>
             </thead>
             <tbody>
-    { 
-        books.map((book,i)=>{
+              { 
+                books.map((book,i)=>{
                 return(
-        <Row key={i} book={book}/>
-    )
-    })}
-    </tbody>
+                  <Row key={i} book={book}/>
+                )
+              })}
+            </tbody>
         </table>
-        </div>
+      </div>
     )
 }
 

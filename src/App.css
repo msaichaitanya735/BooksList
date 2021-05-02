@@ -18,7 +18,7 @@
   display: block;
 }
 
-input[type=text] {
+.input_text_container {
   margin-top: 50px;
   margin-bottom: 10px;
   width: 150px;
@@ -34,11 +34,11 @@ input[type=text] {
   box-shadow: 0 0 6px 2px rgb(0 0 0 / 50%)
 }
 
-input[type=text]:hover {
+.input_text_container:hover {
   margin-left: 0;
   width: 100%;
 }
-input[type=text]:focus {
+.input_text_container:focus {
   margin-left: 0;
   width: 100%;
 }

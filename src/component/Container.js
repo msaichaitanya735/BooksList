@@ -4,6 +4,7 @@ import Table from './table'
 import Pagination from './pagination'
 import Nav from './Nav'
 import '../App.css'
+import Login from './Login'
 
 const  Container = () => {
     const [books,setBooks]=useState([])
@@ -72,10 +73,7 @@ const  Container = () => {
           setSeachWord(e.target.value)
           const searchText= e.target.value.toLowerCase().trim()
           console.log(searchText)
-          if(!searchText){
-            setBooks(org)
-          }
-          else{
+          if(searchText){
             const filterData= org.filter(item=>{
               return Object.keys(item).some(key=>{
                 return item[key].toString().toLowerCase().includes(searchText)
@@ -83,6 +81,7 @@ const  Container = () => {
             })
             setBooks(filterData)
           }
+
           
         }
 
@@ -122,7 +121,7 @@ const  Container = () => {
             </select>
             
         </div>
-        <input type="text" name="search" placeholder="Search.. &#128270; " onChange={search}></input>
+        <input type="text" name="search" placeholder="Search.. &#128270; " onChange={search} className='input_text_container'></input>
 
         
       <Table books={currentBook }  sortopen={sortopen}/>
